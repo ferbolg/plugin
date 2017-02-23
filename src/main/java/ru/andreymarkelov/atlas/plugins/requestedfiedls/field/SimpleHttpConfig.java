@@ -45,6 +45,7 @@ public class SimpleHttpConfig implements FieldConfigItemType {
             parms.put("reqType", data.getReqType());
             parms.put("reqData", data.getReqData());
             parms.put("reqPath", data.getReqPath());
+            parms.put("regex",data.getRegex());
         }
         return parms;
     }
@@ -77,6 +78,7 @@ public class SimpleHttpConfig implements FieldConfigItemType {
             parms.put("reqData", data.getReqData());
             parms.put("reqPath", data.getReqPath());
             parms.put("isXmlField", isXmlField);
+            parms.put("regex",data.getRegex());
         }
 
         StringWriter sw = new StringWriter();

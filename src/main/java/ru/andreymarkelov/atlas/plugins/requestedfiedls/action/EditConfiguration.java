@@ -23,6 +23,7 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
     private String reqType;
     private String reqData;
     private String reqPath;
+    private String regex;
 
     public EditConfiguration(
             ManagedConfigurationItemService managedConfigurationItemService,
@@ -45,6 +46,7 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
             this.reqType = data.getReqType();
             this.reqData = data.getReqData();
             this.reqPath = data.getReqPath();
+            this.regex = data.getRegex();
         }
 
         return INPUT;
@@ -58,7 +60,7 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
         }
 
         String reqDataType = isXmlField() ? "xml" : "json";
-        pluginData.storeJSONFieldData(getFieldConfig(), new JSONFieldData(url, user, password, reqType, reqDataType, reqData, reqPath));
+        pluginData.storeJSONFieldData(getFieldConfig(), new JSONFieldData(url, user, password, reqType, reqDataType, reqData, reqPath,regex));
         return getRedirect("/secure/admin/ConfigureCustomField!default.jspa?customFieldId=" + getFieldConfig().getCustomField().getIdAsLong().toString());
     }
 
@@ -87,6 +89,14 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
 
     public String getReqPath() {
         return reqPath;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 
     public String getReqType() {

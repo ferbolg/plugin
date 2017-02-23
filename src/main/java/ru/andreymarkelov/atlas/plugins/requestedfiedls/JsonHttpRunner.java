@@ -1,7 +1,9 @@
 package ru.andreymarkelov.atlas.plugins.requestedfiedls;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +32,18 @@ public class JsonHttpRunner {
             HttpSender httpService = new HttpSender(data.getUrl(), data.getReqType(), data.getReqDataType(), data.getUser(), data.getPassword());
             String json = httpService.call(data.getReqData());
             JsonPath namePath = JsonPath.compile(data.getReqPath());
-            List<String> vals = namePath.read(json, List.class);
-
+            List<String> rawVals = namePath.read(json, List.class);
+            List<String> vals = new LinkedList<>();
+            if(data.getRegex()!=null && !"".equals(data.getRegex())) {
+                Pattern pattern = Pattern.compile(data.getRegex());
+                for (String val : rawVals) {
+                    if (pattern.matcher(val).matches()) {
+                        vals.add(val);
+                    }
+                }
+            }else{
+                vals.addAll(rawVals);
+            }
             if (defValue != null) {
                 vals.add(0, defValue.toString());
             }
@@ -50,4 +62,6 @@ public class JsonHttpRunner {
 
         return res;
     }
+
+
 }

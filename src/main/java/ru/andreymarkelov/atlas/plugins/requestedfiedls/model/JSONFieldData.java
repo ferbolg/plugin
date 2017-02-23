@@ -8,6 +8,7 @@ public class JSONFieldData {
     private String reqData;
     private String reqPath;
     private String reqDataType;
+    private String regex;
 
     public JSONFieldData() {
     }
@@ -27,6 +28,25 @@ public class JSONFieldData {
         this.reqDataType = reqDataType;
         this.reqData = reqData;
         this.reqPath = reqPath;
+    }
+
+    public JSONFieldData(
+            String url,
+            String user,
+            String password,
+            String reqType,
+            String reqDataType,
+            String reqData,
+            String reqPath,
+            String regex) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+        this.reqType = reqType;
+        this.reqData = reqData;
+        this.reqPath = reqPath;
+        this.reqDataType = reqDataType;
+        this.regex = regex;
     }
 
     public String getPassword() {
@@ -83,6 +103,14 @@ public class JSONFieldData {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 
     @Override

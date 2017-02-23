@@ -87,11 +87,34 @@
                 <div class="description">$i18n.getText("ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.desc")</div>
             </div>
             <div class="field-group">
-                <label for="reqPath">#if($action.isXmlField())$i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.xml')#else$i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.json')#end<span class="aui-icon icon-required"/></label>
+                <label for="reqPath">
+                    #if($action.isXmlField())
+                        $i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.xml')
+                    #else
+                        $i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.json')
+                    #end
+                    <span class="aui-icon icon-required"/>
+                </label>
                 <input type="text" class="text long-field" name="reqPath" id="reqPath" value="$!{action.getReqPath()}"/>
-                #if($action.getErrors().containsKey("reqPath"))<div class="error">$action.getErrors().get("reqPath")</div>#end
+                #if($action.getErrors().containsKey("reqPath"))
+                    <div class="error">
+                        $action.getErrors().get("reqPath")
+                    </div>
+                #end
                 <div class="description">$i18n.getText("ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.desc")</div>
             </div>
+            #if(!$action.isXmlField())
+            <div class="field-group">
+                <label for="regex">$i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.regex')</label>
+                <input type="text" class="text long-field" name="regex" id="regex" value="$!{action.getRegex()}"/>
+                #if($action.getErrors().containsKey("getRegex"))
+                    <div class="error">$action.getErrors().get("getRegex")</div>
+                #end
+                <div class="description">
+                    $i18n.getText("ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.regex.desc")
+                </div>
+            </div>
+                #end
             <div class="buttons-container">
                 <div class="buttons">
                     <input type="submit" class="aui-button" accesskey="s" id="set_defaults_submit" value='$i18n.getText("ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.save")'>

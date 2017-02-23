@@ -31,5 +31,13 @@
         </label>
         <span id="reqPath" class="field-value">$reqPath</span>
     </div>
+    #if(!$isXmlField)
+    <div class="field-group">
+        <label for="regex">
+            ${i18n.getText('ru.andreymarkelov.atlas.plugins.requestedfields.fieldconfig.reqdata.regex')}:
+        </label>
+        <span id="regex" class="field-value">$regex</span>
+    </div>
+    #end
 </form>
 #end
