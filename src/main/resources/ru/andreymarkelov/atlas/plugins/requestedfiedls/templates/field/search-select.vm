@@ -6,8 +6,36 @@ $!{auiparams.put("controlHeaderClass", "aui-field-text")}
         <option></option>
         #foreach($val in $value)<option value="$val">$val</option>#end
     </select>
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                AJS.$("#customfield_${customField.id} option[value='-1']").remove(); //Removes the default value "None"
+                function convertMulti(id) {
+                    var myVar = 234;
+                    console.log(myVar);
+                    if (AJS.$('#' + id + "-textarea").length == 0) {
+                        new AJS.MultiSelect({
+                            element: $("#" + id),
+                            itemAttrDisplayed: "label",
+                            errorMessage: AJS.params.multiselectComponentsError
+                        });
+                    }
+                }
+
+                AJS.toInit(function () {
+                    convertMulti("customfield_${customField.id}");
+                })
+
+                JIRA.bind(JIRA.Events.NEW_CONTENT_ADDED, function (e, context) {
+                    AJS.$("#customfield_<${customField.id}> option[value='-1']").remove();
+                    convertMulti("customfield_<${customField.id}>");
+                });
+            });
+        })(AJS.$ || jQuery);
+    </script>
     #else
     <input class="text" id="searcher-$customField.id" name="$customField.id"/>
     #end
+
 #searcherEditFooter (${customField.id} ${customField.description})
 $!{auiparams.clear()}
