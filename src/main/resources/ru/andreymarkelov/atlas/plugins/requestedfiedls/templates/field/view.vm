@@ -1,1 +1,2 @@
+$webResourceManager.requireResourcesForContext("requestedfields")
 #if($value)$!value#end

@@ -1,3 +1,4 @@
+$webResourceManager.requireResourcesForContext("requestedfields")
 #controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
 #if ($displayParameters.defaultScreen)
     <input class="text" id="$customField.id" maxlength="254" name="$customField.id"${style} type="text" value="$textutils.htmlEncode($!value)"/>
@@ -11,9 +12,15 @@
         #if($error)
             <div class="formErrors">$textutils.htmlEncode($!error)</div>
         #else
-            <select class="select" name="$customField.id" id="$customField.id">
+            <select class="select text-wide" style="color: brown;" name="$customField.id" id="$customField.id">
                 #foreach($val in $vals)<option #if($value && $value == $val)selected="selected"#end value="$val">$val</option>#end
             </select>
+            <script type="javascript">
+                    AJS.toInit(function () {
+                        var myVar = 234;
+                        console.log(myVar);
+                    })
+            </script>
         #end
     #end
 #end

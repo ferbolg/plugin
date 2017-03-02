@@ -18,6 +18,7 @@
     <!-- Web Resources -->
     <web-resource key="requestedfields-resources" name="Request custom fields Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>jira.webresources:jira-global</dependency>
         <resource type="download" name="requestedfields.css" location="/ru/andreymarkelov/atlas/plugins/requestedfiedls/css/requestedfields.css"/>
         <resource type="download" name="requestedfields.js" location="/ru/andreymarkelov/atlas/plugins/requestedfiedls/js/requestedfields.js"/>
         <resource type="download" name="images/" location="/ru/andreymarkelov/atlas/plugins/requestedfiedls/images/"/>
