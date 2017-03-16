@@ -1,4 +1,4 @@
-$webResourceManager.requireResourcesForContext("requestedfields")
+##$webResourceManager.requireResourcesForContext("requestedfields")
 #controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
 #if ($displayParameters.defaultScreen)
     <input class="text" id="$customField.id" maxlength="254" name="$customField.id"${style} type="text" value="$textutils.htmlEncode($!value)"/>
